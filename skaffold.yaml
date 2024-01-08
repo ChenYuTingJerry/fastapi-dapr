@@ -1,0 +1,18 @@
+apiVersion: skaffold/v4beta8
+kind: Config
+metadata:
+  name: fastapi-in-ddd
+build:
+  artifacts:
+    - image: fastapi-in-ddd
+      docker:
+        dockerfile: Dockerfile
+  local:
+    useDockerCLI: true
+    useBuildkit: true
+profiles:
+  - name: k8s-server
+    manifests:
+      rawYaml:
+        - deployment/k8s/k8s-server.yaml
+
