@@ -1,8 +1,10 @@
-apiVersion: skaffold/v4beta8
+apiVersion: skaffold/v4beta9
 kind: Config
 metadata:
-  name: fastapi-in-ddd
+  name: python-app
 build:
+  tagPolicy:
+    dateTime: {}
   artifacts:
     - image: fastapi-in-ddd
       docker:
@@ -11,8 +13,7 @@ build:
     useDockerCLI: true
     useBuildkit: true
 profiles:
-  - name: k8s-server
+  - name: python-app
     manifests:
       rawYaml:
-        - deployment/k8s/k8s-server.yaml
-
+        - deployment/python-app/deployment.yaml
