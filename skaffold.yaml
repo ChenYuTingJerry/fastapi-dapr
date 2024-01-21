@@ -17,3 +17,7 @@ profiles:
     manifests:
       rawYaml:
         - deployment/python-app/deployment.yaml
+  - name: test-app
+    manifests:
+      rawYaml:
+        - deployment/test-app/deployment.yaml
