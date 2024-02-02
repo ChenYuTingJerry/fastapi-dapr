@@ -2,27 +2,26 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: testapp
+  name: api-srv
   labels:
-    app: test-app
+    app: api-srv
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: test-app
+      app: api-srv
   template:
     metadata:
       labels:
-        app: test-app
+        app: api-srv
       annotations:
         dapr.io/enabled: "true"
-        dapr.io/app-id: "testapp"
+        dapr.io/app-id: "api-srv"
         dapr.io/app-port: "8000"
-        dapr.io/config: "pipeline"
     spec:
       containers:
-      - name: rest-app
-        image: fastapi-in-ddd
+      - name: api-srv
+        image: api-srv
         ports:
         - name: rest
           containerPort: 8000
@@ -30,12 +29,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: test-app
+  name: api-srv
 spec:
   type: LoadBalancer
   selector:
-    app: test-app
+    app: api-srv
   ports:
   - name: rest
-    port: 8052
+    port: 8051
     targetPort: 8000

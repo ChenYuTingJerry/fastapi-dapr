@@ -1,23 +1,29 @@
 apiVersion: skaffold/v4beta9
 kind: Config
 metadata:
-  name: python-app
+  name: api-srv
 build:
   tagPolicy:
     dateTime: {}
-  artifacts:
-    - image: fastapi-in-ddd
-      docker:
-        dockerfile: Dockerfile
   local:
     useDockerCLI: true
     useBuildkit: true
 profiles:
-  - name: python-app
+  - name: api-srv
+    build:
+      artifacts:
+        - image: api-srv
+          docker:
+            dockerfile: api-srv/Dockerfile
     manifests:
       rawYaml:
-        - deployment/python-app/deployment.yaml
-  - name: test-app
+        - deploy/api-srv/deployment.yaml
+  - name: checkout-srv
+    build:
+      artifacts:
+        - image: checkout-srv
+          docker:
+            dockerfile: checkout-srv/Dockerfile
     manifests:
       rawYaml:
-        - deployment/test-app/deployment.yaml
+        - deploy/checkout-srv/deployment.yaml

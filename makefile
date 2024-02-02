@@ -12,8 +12,12 @@ local-run:
 build:
 	DOCKER_BUILDKIT=1 docker build . -t $(APP_NAME):$(TAG)
 
-k8s-deploy:
-	skaffold dev -p python-app
+api-deploy:
+	skaffold dev -p api-srv
+
+checkout-deploy:
+	skaffold dev -p checkout-srv
 
 k8s-undeploy:
-	skaffold delete -p python-app
+	skaffold delete -p api-srv
+	skaffold delete -p checkout-srv

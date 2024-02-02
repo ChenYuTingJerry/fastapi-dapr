@@ -2,27 +2,26 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: pythonapp
+  name: checkout-srv
   labels:
-    app: python-app
+    app: checkout-srv
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: python-app
+      app: checkout-srv
   template:
     metadata:
       labels:
-        app: python-app
+        app: checkout-srv
       annotations:
         dapr.io/enabled: "true"
-        dapr.io/app-id: "pythonapp"
+        dapr.io/app-id: "checkout-srv"
         dapr.io/app-port: "8000"
-        dapr.io/config: "pipeline"
     spec:
       containers:
-      - name: python-app
-        image: fastapi-in-ddd
+      - name: checkout-srv
+        image: checkout-srv
         ports:
         - name: rest
           containerPort: 8000
@@ -30,11 +29,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: python-app
+  name: checkout-srv
 spec:
   type: LoadBalancer
   selector:
-    app: python-app
+    app: checkout-srv
   ports:
   - name: rest
     port: 8051
