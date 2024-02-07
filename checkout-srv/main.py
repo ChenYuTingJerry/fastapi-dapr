@@ -20,8 +20,16 @@ async def hit():
 @app.post("/publish")
 async def publish():
     url = f"http://localhost:3500/v1.0/publish/my-pubsub/try"
-    res = requests.post(url, json={"message":"Hi I am checkout"})
+    res = requests.post(url, json={"message": "Hi I am checkout"})
     return res.status_code, res.text
+
+
+@app.post("/trigger")
+async def trigger(method:str):
+    url = f"http://localhost:3500/v1.0/actors/DemoActor/1/method/{method}"
+    res = requests.post(url, json={"destination": "Hoth"})
+    return res.status_code, res.text
+
 
 if __name__ == "__main__":
     uvicorn.run(app)
