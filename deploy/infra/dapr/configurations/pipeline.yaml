@@ -5,8 +5,8 @@ metadata:
 spec:
   httpPipeline:
     handlers:
-    - type: middleware.http.uppercase
-      name: uppercase
+      - type: middleware.http.uppercase
+        name: uppercase
   appHttpPipeline: # for outgoing http calls
     handlers:
       - name: uppercase
