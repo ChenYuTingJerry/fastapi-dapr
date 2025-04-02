@@ -1,23 +1,14 @@
-APP_NAME=fastapi-in-ddd
-TAG=latest
-PORT=8000
+.PHONY: run-local build-proto run-compose run-k8s
 
-dapr-run:
-	dapr run --app-port 8000 --app-id hello-app --app-protocol http --dapr-http-port 3501 -- python main.py
-	#gunicorn "main:app" -w 2 -k uvicorn.workers.UvicornWorker -b "0.0.0.0:8000"
+run-local:
+	poetry install
+	bash scripts/run_local.sh
 
-local-run:
-	docker run --rm -p $(PORT):$(PORT) -it $(APP_NAME):$(TAG)
+build-proto:
+	bash proto/build.sh
 
-build:
-	DOCKER_BUILDKIT=1 docker build . -t $(APP_NAME):$(TAG)
+run-compose:
+	docker-compose up --build
 
-api-deploy:
-	skaffold dev -p api-srv
-
-checkout-deploy:
-	skaffold dev -p checkout-srv
-
-k8s-undeploy:
-	skaffold delete -p api-srv
-	skaffold delete -p checkout-srv
+run-k8s:
+	kubectl apply -f deployments/k8s/
