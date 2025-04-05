@@ -1,24 +1,22 @@
 [project]
-name = "python-dapr-poc"
+name = "fastapi-dapr"
 version = "0.1.0"
 description = ""
 authors = [
     {name = "JerryChen",email = "nmjk2000@gmail.com"}
 ]
 readme = "README.md"
-requires-python = ">=3.12"
+requires-python = ">=3.11"
 dependencies = [
     "fastapi (>=0.115.12,<0.116.0)",
     "uvicorn (>=0.34.0,<0.35.0)",
     "dapr-ext-fastapi (>=1.15.0,<2.0.0)",
     "dapr-ext-grpc (>=1.15.0,<2.0.0)",
     "dapr-ext-workflow (>=1.15.0,<2.0.0)",
-    "grpcio (>=1.71.0,<2.0.0)",
-    "protobuf (>=5.26.1,<6.0.0)",
-    "grpcio-tools (>=1.71.0,<2.0.0)",
-    "requests (>=2.32.3,<3.0.0)"
+    "gunicorn (>=23.0.0,<24.0.0)",
+    "httpx (>=0.28.1,<0.29.0)",
+    "multidict (>=6.2.0,<7.0.0)",
 ]
-
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
