@@ -1,0 +1,60 @@
+version: 1
+common:
+  resourcesPath: ./components/
+apps:
+  - appID: order-service
+    appDirPath: ./apps/order_service/app
+    appPort: 8001
+    daprHTTPPort: 3500
+    command: [
+      "gunicorn",
+      "main:app",
+      "--workers",
+      "1",
+      "--worker-class",
+      "uvicorn.workers.UvicornWorker",
+      "--bind",
+      "0.0.0.0:8001"
+    ]
+  - appID: payment-service
+    appDirPath: ./apps/payment_service/app
+    appPort: 8002
+    daprHTTPPort: 3501
+    command: [
+      "gunicorn",
+      "main:app",
+      "--workers",
+      "1",
+      "--worker-class",
+      "uvicorn.workers.UvicornWorker",
+      "--bind",
+      "0.0.0.0:8002"
+    ]
+  - appID: subscriber-service
+    appDirPath: ./apps/subscriber_service/app
+    appPort: 8003
+    daprHTTPPort: 3502
+    command: [
+      "gunicorn",
+      "main:app",
+      "--workers",
+      "1",
+      "--worker-class",
+      "uvicorn.workers.UvicornWorker",
+      "--bind",
+      "0.0.0.0:8003"
+    ]
+  - appID: workflow-service
+    appDirPath: ./apps/workflow_service/app
+    appPort: 8004
+    daprHTTPPort: 3503
+    command: [
+      "gunicorn",
+      "main:app",
+      "--workers",
+      "1",
+      "--worker-class",
+      "uvicorn.workers.UvicornWorker",
+      "--bind",
+      "0.0.0.0:8004"
+    ]
