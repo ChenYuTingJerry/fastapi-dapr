@@ -21,7 +21,7 @@ def notify_user(ctx: WorkflowActivityContext, msg: str) -> str:
 def order_fulfillment_workflow(ctx: DaprWorkflowContext, payload: dict):
     logger.info(f"🧭 Workflow started with payload: {payload}")
     result = yield ctx.call_activity(deliver_product, input=payload['data'])
-    logger.info("🚚 Delivery finished")
+    logger.info(f"🚚 Delivery finished: {result}")
     yield ctx.call_activity(notify_user, input=result)
     logger.info("📢 Notification sent")
     return {"status": "complete"}

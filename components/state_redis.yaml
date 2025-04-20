@@ -8,8 +8,10 @@ spec:
   initTimeout: 1m
   metadata:
   - name: redisHost
-    value: localhost:6379
+    value: redis-master.default.svc.cluster.local:6379
   - name: redisPassword
-    value: ""
+    secretKeyRef:
+      name: redis
+      key: redis-password
   - name: actorStateStore
     value: "true"

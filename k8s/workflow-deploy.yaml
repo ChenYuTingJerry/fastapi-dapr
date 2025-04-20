@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: workflow-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: workflow-service
+  template:
+    metadata:
+      labels:
+        app: workflow-service
+      annotations:
+        dapr.io/enabled: "true"
+        dapr.io/app-id: "workflow-service"
+        dapr.io/app-port: "8000"
+    spec:
+      containers:
+        - name: workflow-service
+          image: workflow_service:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8000
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: workflow-service
+spec:
+  selector:
+    app: workflow-service
+  ports:
+    - protocol: TCP
+      port: 8000
+      targetPort: 8000
