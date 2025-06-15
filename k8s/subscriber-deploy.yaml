@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: subscriber-service
-          image: subscriber_service:latest
+          image: fastapi-dapr/subscriber-service:latest
           imagePullPolicy: Never
           ports:
             - containerPort: 8000

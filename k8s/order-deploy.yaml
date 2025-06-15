@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: order-service
-          image: order_service:latest
+          image: fastapi-dapr/order-service:latest
           imagePullPolicy: Never
           ports:
             - containerPort: 8000
@@ -33,5 +33,5 @@ spec:
     app: order-service
   ports:
     - protocol: TCP
-      port: 8000
+      port: 80
       targetPort: 8000

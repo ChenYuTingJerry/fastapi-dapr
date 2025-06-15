@@ -1,24 +1,21 @@
 services:
-#  order_service:
-#    build:
-#      context: .
-#      dockerfile:  apps/order_service/Dockerfile
-#    image: order_service
-
-#  payment_service:
-#    build:
-#      context: .
-#      dockerfile: apps/payment_service/Dockerfile
-#    image: payment_service
-
+  order_service:
+    build:
+      context: .
+      dockerfile: apps/order_service/Dockerfile
+    image: fastapi-dapr/order-service:latest
+  payment_service:
+    build:
+      context: .
+      dockerfile: apps/payment_service/Dockerfile
+    image: fastapi-dapr/payment-service:latest
   workflow_service:
     build:
       context: .
       dockerfile: apps/workflow_service/Dockerfile
-    image: workflow_service
-
-#  subscriber_service:
-#    build:
-#      context: .
-#      dockerfile: apps/subscriber_service/Dockerfile
-#    image: subscriber_service
+    image: fastapi-dapr/workflow-service:latest
+  subscriber_service:
+    build:
+      context: .
+      dockerfile: apps/subscriber_service/Dockerfile
+    image: fastapi-dapr/subscriber-service:latest

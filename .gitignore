@@ -1,2 +1,3 @@
 .idea
 .dapr
+*__pycache__*

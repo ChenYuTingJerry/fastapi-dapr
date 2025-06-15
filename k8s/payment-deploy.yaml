@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: payment-service
-          image: payment_service:latest
+          image: fastapi-dapr/payment-service:latest
           imagePullPolicy: Never
           ports:
             - containerPort: 8000
